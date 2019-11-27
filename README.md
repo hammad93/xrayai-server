@@ -69,7 +69,7 @@ Description=Run the Chest X-Ray artificial intelligence created through tensorfl
 [Service]
 Type=simple
 Restart=always
-ExecStart=/opt/bitnami/tensorflow-serving/bazel-bin/tensorflow_serving/model_servers/tensorflow_model_server --model_base_path=/home/husmani/xrayai-server/classifer --rest_api_port=9000 --model_name=xrayai
+ExecStart=/opt/bitnami/tensorflow-serving/bazel-bin/tensorflow_serving/model_servers/tensorflow_model_server --model_base_path=/home/husmani/xrayai-server/classifier --rest_api_port=9000 --model_name=xrayai
 
 [Install]
 WantedBy=multi-user.target
