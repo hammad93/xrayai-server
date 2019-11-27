@@ -19,6 +19,7 @@ tensorflow_model_server --model_base_path=/home/user/Desktop/OMSCS/DVA/xrayai-se
 ``` 
 - Ensure that the tensorflow_model_server is running at: http://localhost:9000/v1/models/xrayai:predict
 - Start the app with:
-``` python app.py
+``` 
+python app.py
 ``` 
 - Check [http://localhost:5000](http://localhost:5000/)
