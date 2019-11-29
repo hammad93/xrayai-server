@@ -48,6 +48,8 @@ systemctl enable xrayaipython
 systemctl enable xrayaitensorflow
 ```
 
+## Demo
+![Demo](https://raw.githubusercontent.com/xinlutu2/xrayai-server/master/img/demo.png)
 
 `xrayaipython.service`
 ```
