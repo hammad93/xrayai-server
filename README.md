@@ -47,10 +47,6 @@ systemctl start xrayaitensorflow
 systemctl enable xrayaipython
 systemctl enable xrayaitensorflow
 ```
-
-## Demo
-![Demo](https://raw.githubusercontent.com/xinlutu2/xrayai-server/master/img/demo.png)
-
 `xrayaipython.service`
 ```
 [Unit]
@@ -78,3 +74,5 @@ ExecStart=/opt/bitnami/tensorflow-serving/bazel-bin/tensorflow_serving/model_ser
 [Install]
 WantedBy=multi-user.target
 ```
+## Demo
+![Demo](https://raw.githubusercontent.com/xinlutu2/xrayai-server/master/img/demo.png)
