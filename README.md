@@ -2,6 +2,8 @@
 
 ## Instructions
 
+### Reference: https://github.com/mtobeiyf/keras-flask-deploy-webapp
+
 - Clone the repo
 - Install requirements.txt
 - Install tensorflow-model-server
@@ -23,9 +25,9 @@ apt-get install tensorflow-model-server
 
 - Start tensorflow-model-server
 ```
-tensorflow_model_server --model_base_path=[Path_to_the_repo]/xrayai-server/classifer --rest_api_port=9000 --model_name=xrayai
+tensorflow_model_server --model_base_path=[Path_to_the_repo]/xrayai-server/classifier --rest_api_port=9000 --model_name=xrayai
 e.g. 
-tensorflow_model_server --model_base_path=/home/user/Desktop/OMSCS/DVA/xrayai-server/classifer --rest_api_port=9000 --model_name=xrayai
+tensorflow_model_server --model_base_path=/home/user/Desktop/OMSCS/DVA/xrayai-server/classifier --rest_api_port=9000 --model_name=xrayai
 ``` 
 - Ensure that the tensorflow_model_server is running at: http://localhost:9000/v1/models/xrayai:predict
 - Start the app with:

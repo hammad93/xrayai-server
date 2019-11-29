@@ -34,7 +34,6 @@ def model_predict(img_list):
     raw = {"signature_name": "serving_default"}
     raw["instances"] = img_list
     data = json.dumps(raw)
-    # print(data)
 
     headers = {"content-type": "application/json"}
     json_response = requests.post('http://localhost:9000/v1/models/xrayai:predict', data=data, headers=headers)
@@ -43,7 +42,8 @@ def model_predict(img_list):
     res["predictions"] = []
 
     for prediction in json.loads(json_response.text)["predictions"]:
-        percentage = ["{0:.2f}%".format(val*100) for val in prediction]
+        # percentage = ["{0:.2f}%".format(val*100) for val in prediction]
+        percentage = [round(val*100,2) for val in prediction]
         percentage_label = dict(zip(labels, percentage))
         res["predictions"].append(percentage_label)
 
@@ -70,8 +70,15 @@ def upload():
 
         # Make prediction
         new_image = process_image(file_path).tolist()
-        preds = str(model_predict(new_image)['predictions'][0])
+        preds = model_predict(new_image)['predictions'][0]
+        preds = {k: preds[k] for k in sorted(preds, key=preds.get, reverse=True)}
+        labels = list(preds.keys())
+        values = list(preds.values())
 
+        preds["data"] = {}
+        preds["data"]["labels"] = labels
+        preds["data"]["chartData"] = values
+        print(preds)
         return preds
     return None
 

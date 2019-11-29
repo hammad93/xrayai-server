@@ -1,3 +1,5 @@
+// https://stackoverflow.com/questions/40367076/how-does-one-add-data-to-a-chart-in-an-ajax-call
+
 $(document).ready(function () {
     // Init
     $('.image-section').hide();
@@ -41,12 +43,32 @@ $(document).ready(function () {
             cache: false,
             processData: false,
             async: true,
-            success: function (data) {
+            success: function (response) {
                 // Get and display the result
                 $('.loader').hide();
                 $('#result').fadeIn(600);
-                $('#result').text(' Result:  ' + data);
+                $('#result').text(' Result - Top 2 diagnosis results: ');
                 console.log('Success!');
+                console.log(response);
+                var ctx = document.getElementById("chart");
+                var myBarChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: response.data.labels,
+                        datasets: [{
+                            data: response.data.chartData,
+                            backgroundColor: [
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(255, 99, 132, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(255,99,132,1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    }
+                });
             },
         });
     });
