@@ -47,7 +47,7 @@ $(document).ready(function () {
                 // Get and display the result
                 $('.loader').hide();
                 $('#result').fadeIn(600);
-                $('#result').text(' Result - Top 2 diagnosis results: ');
+                $('#result').text(' Diagnosis results: ');
                 console.log('Success!');
                 console.log(response);
                 var ctx = document.getElementById("chart");
@@ -57,14 +57,7 @@ $(document).ready(function () {
                         labels: response.data.labels,
                         datasets: [{
                             data: response.data.chartData,
-                            backgroundColor: [
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(255, 99, 132, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(255,99,132,1)'
-                            ],
+                            backgroundColor: ["#FE2712", "#FC600A", "#2ECC40", "#FB9902", "#FCCC1A", "#FEFE33", "#B2D732", "#66B032", "#347C98", "#0247FE", "#4424D6", "#F012BE", "#8601AF", "#C21460", "#AAAAAA"],
                             borderWidth: 1
                         }]
                     }
