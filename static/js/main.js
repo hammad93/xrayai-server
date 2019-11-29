@@ -57,7 +57,7 @@ $(document).ready(function () {
                         labels: response.data.labels,
                         datasets: [{
                             data: response.data.chartData,
-                            backgroundColor: ["#FE2712", "#FC600A", "#2ECC40", "#FB9902", "#FCCC1A", "#FEFE33", "#B2D732", "#66B032", "#347C98", "#0247FE", "#4424D6", "#F012BE", "#8601AF", "#C21460", "#AAAAAA"],
+                            backgroundColor: ["#ff9999", "#ffb399", "#ffcc99", "#b3ff99", "#99ff99", "#99ffb3", "#99ffcc", "#99ffe6", "#99ffff", "#99e6ff", "#99ccff", "#99b3ff", "#9999ff", "#b399ff", "cc99ff"],
                             borderWidth: 1
                         }]
                     }
