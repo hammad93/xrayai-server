@@ -21,10 +21,23 @@
         </div>
     </nav>
     <div class="container">
-        <div id="content" style="margin-top:2em">
-        {% block content %}{% endblock %}
+        <div class="row">
+            <div class="col-sm-6">
+                <div id="content" style="margin-top:2em">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="chart-container" style="position: relative; height:50vh; width:45vw">
+                    <canvas id="chart"></canvas>
+                </div>
+            </div>
         </div>
-        <canvas id="chart" height="100px" width="100px"></canvas>
     </div>
 </body>
 

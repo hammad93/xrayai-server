@@ -47,7 +47,7 @@ $(document).ready(function () {
                 // Get and display the result
                 $('.loader').hide();
                 $('#result').fadeIn(600);
-                $('#result').text(' Diagnosis results: ');
+                // $('#result').text(' Diagnosis results: ');
                 console.log('Success!');
                 console.log(response);
                 var ctx = document.getElementById("chart");
@@ -60,6 +60,12 @@ $(document).ready(function () {
                             backgroundColor: ["#ff9999", "#ffb399", "#ffcc99", "#b3ff99", "#99ff99", "#99ffb3", "#99ffcc", "#99ffe6", "#99ffff", "#99e6ff", "#99ccff", "#99b3ff", "#9999ff", "#b399ff", "cc99ff"],
                             borderWidth: 1
                         }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Diagnosis results: '
+                        }
                     }
                 });
             },
