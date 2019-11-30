@@ -4,7 +4,8 @@ $(document).ready(function () {
     // Init
     $('.image-section').hide();
     $('.loader').hide();
-    $('#result').hide();
+    $('#result1').hide();
+    $('#result2').hide();
 
     // Upload Preview
     function readURL(input) {
@@ -21,8 +22,10 @@ $(document).ready(function () {
     $("#imageUpload").change(function () {
         $('.image-section').show();
         $('#btn-predict').show();
-        $('#result').text('');
-        $('#result').hide();
+        $('#result1').text('');
+        $('#result1').hide();
+        $('#result2').text('');
+        $('#result2').hide();
         readURL(this);
     });
 
@@ -46,8 +49,10 @@ $(document).ready(function () {
             success: function (response) {
                 // Get and display the result
                 $('.loader').hide();
-                $('#result').fadeIn(600);
-                // $('#result').text(' Diagnosis results: ');
+                $('#result1').fadeIn(600);
+                $('#result2').fadeIn(600);
+                $('#result1').text(' Diagnosis result: '+response.data.labels[0]);
+                $('#result2').text(' Diagnosis probability: '+response.data.chartData[0]+'%');
                 console.log('Success!');
                 console.log(response);
                 var ctx = document.getElementById("chart");
@@ -64,7 +69,7 @@ $(document).ready(function () {
                     options: {
                         title: {
                             display: true,
-                            text: 'Diagnosis results: '
+                            text: 'Prediction results: '
                         }
                     }
                 });
