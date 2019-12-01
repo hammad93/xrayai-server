@@ -6,6 +6,7 @@ $(document).ready(function () {
     $('.loader').hide();
     $('#result1').hide();
     $('#result2').hide();
+    $('#result3').hide();
 
     // Upload Preview
     function readURL(input) {
@@ -26,6 +27,8 @@ $(document).ready(function () {
         $('#result1').hide();
         $('#result2').text('');
         $('#result2').hide();
+        $('#result3').text('');
+        $('#result3').hide();
         readURL(this);
     });
 
@@ -51,8 +54,10 @@ $(document).ready(function () {
                 $('.loader').hide();
                 $('#result1').fadeIn(600);
                 $('#result2').fadeIn(600);
+                $('#result3').fadeIn(600);
                 $('#result1').text(' Diagnosis result: '+response.data.labels[0]);
                 $('#result2').text(' Diagnosis probability: '+response.data.chartData[0]+'%');
+                $('#result3').text(' Physician comment: Agree or Not agree ');
                 console.log('Success!');
                 console.log(response);
                 var ctx = document.getElementById("chart");
