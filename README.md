@@ -1,6 +1,47 @@
 # xrayai
 
-## Instructions
+## DESCRIPTION
+
+                       _:=:_
+                .-""""`_'='_`""""-.
+               (`,-- -`\   /`- --,`)
+               / //`-_--| |--_-`\\ \
+              / /(_-_  _| |_  _-_)\ \
+             / / (_- __ \ / __ -_) \ \
+            / /  (_ -_ - ^ - _- _)  \ \
+           / /   (_-  _ /=\ _ - _)   \ \
+          / /     (_ -.':=:'. -_)     \ \
+         (`;`     (_-'  :=:  '-_)     `;`)
+          \\.   jgs __  :=:  __       .//
+           \\\    .'  `':=:'`  '.    ///
+
+                     ,---.  ,--. 
+                    /  O  \ |  | 
+                   |  .-.  ||  | 
+                   |  | |  ||  | 
+                   `--' `--'`--' 
+     ,-----.,--.  ,--.,------. ,-----.,--. ,--. 
+    '  .--./|  '--'  ||  .---''  .--./|  .'   / 
+    |  |    |  .--.  ||  `--, |  |    |  .   '  
+    '  '--'\|  |  |  ||  `---.'  '--'\|  |\   \ 
+     `-----'`--'  `--'`------' `-----'`--' '--' 
+
+A computer aided diagnosis (CAD) system for chest x-rays.
+
+Khandaker Ahmed
+Venkata Krishna Parupalli Naga Sanjeeva
+Xinlu Tu
+Hammad Usmani
+Sol Won
+
+This software creates a sophisticated and state of the art artificial intelligence to diagnose 14 diseases that can be accessed from a simple web application.
+
+The following are included diagnoses,
+['Atelectasis', 'Cardiomegaly', 'Consolidation', 'Edema', 'Effusion', 'Emphysema', 'Fibrosis', 'Hernia', 'Infiltration', 'Mass', 'Nodule', 'Pleural_Thickening', 'Pneumonia', 'Pneumothorax']
+
+As of the most recent update, you can also find a live demo here, http://34.74.114.235/
+
+## INSTALLATION
 
 ### Reference: https://github.com/mtobeiyf/keras-flask-deploy-webapp
 
@@ -34,9 +75,19 @@ tensorflow_model_server --model_base_path=/home/user/Desktop/OMSCS/DVA/xrayai-se
 ``` 
 python app.py
 ``` 
-- Check [http://localhost:5000](http://localhost:5000/)
+- Check [http://localhost](http://localhost/)
 
-## SystemD Service Files
+### Ensemble Artificial Intelligence
+The included model in the repository can be used as a proof of concept while the full capabilities can be used with an ensemble. To achieve this, we have provided the Tensorflow Saved Model links below. Please also remember to use the Tensorflow Serve Model Configuration File included named `tensorflow-serving.conf`
+
+- `delopy.zip` : Includes VGG16, ResNet, and MobileNet architectures. We only recommend the VGG variant from this file
+  - https://drive.google.com/open?id=1zHfh8FZI8oYQd6hlIh4QRUnwgyy05qi3
+- `xrayai_Dense.zip` : Includs the DenseNet architecture using transfer learning and trained on the NIH dataset. We recommend using this in an ensemble
+  - https://drive.google.com/open?id=1SX8Bg-m2qXZtyFJ7GjBwgQaYlPGym9Vo
+- `xrayai_NasM.zip` : Similar to the DenseNet model but for NasM
+  - https://drive.google.com/open?id=1TmCHblcWo_lf98H-GejEhfFwRrgh-i7e
+
+### SystemD Service Files
 The following are examples of systemd service files to ensure we can run the X-Ray AI in a production enviornment that starts on boot and restarts if it exits due to an error or any other reason.
 We place the files into /lib/systemd/system/ or your standard directory for systemd *.service files.
 
@@ -74,5 +125,7 @@ ExecStart=/opt/bitnami/tensorflow-serving/bazel-bin/tensorflow_serving/model_ser
 [Install]
 WantedBy=multi-user.target
 ```
-## Demo
+## EXECUTION & DEMO
+
+Visit the site http://34.74.114.235/ and submit one of the test cases included in the demo. Please note that there is a file upload limit.
 ![Demo](https://raw.githubusercontent.com/xinlutu2/xrayai-server/master/img/demo.png)
