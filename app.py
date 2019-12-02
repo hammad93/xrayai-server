@@ -18,11 +18,11 @@ from gevent.pywsgi import WSGIServer
 
 # Define a flask app
 app = Flask(__name__)
-print('Starting tensorflow_model_server on http://localhost:9000/v1/models/xrayai:predict')
-print('Starting application on http://localhost:5000/')
+print('Starting tensorflow_model_server on http://localhost:8501/v1/models/xrayai:predict')
+print('Starting application on http://localhost:80/')
 
 def process_image(img_path):
-    img = image.load_img(img_path, target_size=(128, 128), grayscale=True) #target_size must agree with what the trained model expects!!
+    img = image.load_img(img_path, target_size=(128, 128)) #target_size must agree with what the trained model expects!!
 
     # Preprocessing the image
     img = image.img_to_array(img) / 255
@@ -37,12 +37,22 @@ def model_predict(img_list):
 
     headers = {"content-type": "application/json"}
     # json_response = requests.post('http://34.73.20.177:9000/v1/models/xrayai:predict', data=data, headers=headers)
-    json_response = requests.post('http://localhost:9000/v1/models/xrayai:predict', data=data, headers=headers)
+    json_response_vgg = requests.post('http://localhost:8501/v1/models/vgg:predict', data=data, headers=headers)
+    print(json_response_vgg.text)
+    json_response_dense = requests.post('http://localhost:8501/v1/models/densenet:predict', data=data, headers=headers)
+    print(json_response_dense.text)
+    json_response_nasm = requests.post('http://localhost:8501/v1/models/nasm:predict', data=data, headers=headers)
+    print(json_response_nasm.text)
     labels = ['Atelectasis','Cardiomegaly','Consolidation','Edema','Effusion','Emphysema','Fibrosis','Infiltration','Mass','Nodule','Pleural_Thickening','Pneumonia','Pneumothorax']
     res = {}
     res["predictions"] = []
-
-    for prediction in json.loads(json_response.text)["predictions"]:
+    
+    # Ensemble the response by averaging
+    ensemble = [json_response_vgg, json_response_dense, json_response_nasm]
+    ensemble_data = np.array([json.loads(x.text)["predictions"] for x in ensemble])
+    ensemble_output = np.average(ensemble_data, axis = 0)
+    print(ensemble_output)
+    for prediction in ensemble_output:
         # percentage = ["{0:.2f}%".format(val*100) for val in prediction]
         percentage = [round(val*100,2) for val in prediction]
         percentage_label = dict(zip(labels, percentage))
