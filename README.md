@@ -86,6 +86,8 @@ The included model in the repository can be used as a proof of concept while the
   - https://drive.google.com/open?id=1SX8Bg-m2qXZtyFJ7GjBwgQaYlPGym9Vo
 - `xrayai_NasM.zip` : Similar to the DenseNet model but for NasM
   - https://drive.google.com/open?id=1TmCHblcWo_lf98H-GejEhfFwRrgh-i7e
+  
+These models were created and exported using Google Colab. A complete example notebook is located in the repository.
 
 ### SystemD Service Files
 The following are examples of systemd service files to ensure we can run the X-Ray AI in a production enviornment that starts on boot and restarts if it exits due to an error or any other reason.
