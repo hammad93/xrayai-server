@@ -72,9 +72,15 @@ $(document).ready(function () {
                         }]
                     },
                     options: {
+                        legend: {
+                            labels: {
+                                fontColor: "white"
+                            }
+                        },
                         title: {
                             display: true,
-                            text: 'Prediction results: '
+                            text: 'Prediction results: ',
+                            fontColor: "white"
                         }
                     }
                 });

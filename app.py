@@ -12,7 +12,7 @@ import statistics
 from keras.preprocessing import image
 
 # Flask utils
-from flask import Flask, redirect, url_for, request, render_template
+from flask import Flask, redirect, url_for, request, render_template, jsonify
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 
@@ -36,6 +36,7 @@ def model_predict(img_list):
     data = json.dumps(raw)
 
     headers = {"content-type": "application/json"}
+    # json_response = requests.post('http://34.73.20.177:9000/v1/models/xrayai:predict', data=data, headers=headers)
     json_response = requests.post('http://localhost:9000/v1/models/xrayai:predict', data=data, headers=headers)
     labels = ['Atelectasis','Cardiomegaly','Consolidation','Edema','Effusion','Emphysema','Fibrosis','Infiltration','Mass','Nodule','Pleural_Thickening','Pneumonia','Pneumothorax']
     res = {}
@@ -79,7 +80,7 @@ def upload():
         preds["data"]["labels"] = labels
         preds["data"]["chartData"] = values
         print(preds)
-        return preds
+        return jsonify(preds)
     return None
 
 
